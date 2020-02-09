@@ -3,14 +3,13 @@
 //https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#parameterIn
 //https://swagger.io/docs/specification/data-models/data-types/
 
-open System
-open Document
 open Swag4Net.Core.v2.SwaggerParser
 
 open Swag4Net.Core.Domain
-open SharedKernel
-open SwaggerSpecification
 
+///
+/// facade parser which switch to v2 or v3 according to document content
+///
 module Parser =
     
     let parseOpenApi (content:string) = 

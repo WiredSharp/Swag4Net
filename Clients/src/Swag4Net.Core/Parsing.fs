@@ -6,6 +6,8 @@ module Parsing =
   open System.IO
   open Document
 
+  exception ParsingErrorException of string
+
   type ParsingState<'TSuccess> = 
     { Result: Result<'TSuccess, ParsingError>
       Warnings: string list }
@@ -141,7 +143,7 @@ module Parsing =
   
     //member __.Zero() = () |> Ok |> ParsingState.ofResult
     
-    member __.Comine (a,b) = 
+    member __.Combine (a,b) = 
       ParsingState.combine a b
   
     member __.For(state:ParsingState<'T>, f : unit -> ParsingState<'U>) =
@@ -183,4 +185,12 @@ module Parsing =
   let readBool name token =
     readBoolWithDefault name false token
 
+  let readBoolOption name (token:Value) =
+    match token |> selectToken name with
+    | Some (RawValue v) ->
+        match v with
+        | :? Boolean as b -> Some b
+        | :? String as s -> Boolean.TryParse s |> snd |> Some
+        | _ -> None
+    | _ -> None
 

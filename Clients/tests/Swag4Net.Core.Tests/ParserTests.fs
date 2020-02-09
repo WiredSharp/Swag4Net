@@ -1,4 +1,4 @@
-﻿module Swag4Net.Code.Tests.ParserTests
+﻿module Swag4Net.Core.Tests.ParserTests
 
 open Expecto
 

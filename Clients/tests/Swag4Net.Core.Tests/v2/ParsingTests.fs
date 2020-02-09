@@ -1,4 +1,4 @@
-namespace Swag4Net.Code.Tests.v2
+namespace Swag4Net.Core.Tests.v2
 
 open Swag4Net.Core.Document
 

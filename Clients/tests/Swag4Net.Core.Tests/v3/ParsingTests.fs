@@ -1,4 +1,4 @@
-﻿module Swag4Net.Code.Tests.v3.ParsingTests
+﻿module Swag4Net.Core.Tests.v3.ParsingTests
 
 open Expecto
 open Expecto.Logging

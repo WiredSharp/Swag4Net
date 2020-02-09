@@ -687,7 +687,6 @@ module OpenApiV3ClientGenerator =
                   if op.Tags |> List.contains tag then Some i else None
               | None, (_,_,op,_) -> 
                   if op.Tags |> List.isEmpty then Some i else None
-              | _ -> None
               )
     let methods =
       operations

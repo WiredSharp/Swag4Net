@@ -49,6 +49,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{A8349503
 		nuget.config = nuget.config
 	EndProjectSection
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Swag4Net.DiffTool", "src\Swag4Net.DiffTool\Swag4Net.DiffTool.fsproj", "{63A80D3D-BF47-4997-AF6A-9F9763B44D8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{CAE3CA8B-AB2A-46FF-91FE-DF8F52CEAA80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAE3CA8B-AB2A-46FF-91FE-DF8F52CEAA80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAE3CA8B-AB2A-46FF-91FE-DF8F52CEAA80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63A80D3D-BF47-4997-AF6A-9F9763B44D8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63A80D3D-BF47-4997-AF6A-9F9763B44D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63A80D3D-BF47-4997-AF6A-9F9763B44D8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63A80D3D-BF47-4997-AF6A-9F9763B44D8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +109,7 @@ Global
 		{681937BE-DFAA-4363-81C7-EA90CAAF05F4} = {49A148C6-0FA3-4C83-9630-A57A41C2E18F}
 		{CAE3CA8B-AB2A-46FF-91FE-DF8F52CEAA80} = {49A148C6-0FA3-4C83-9630-A57A41C2E18F}
 		{E9087F0B-A1F4-448C-8389-7918F4D3D690} = {DC17E624-D668-4093-9CF7-D2919224780A}
+		{63A80D3D-BF47-4997-AF6A-9F9763B44D8A} = {49A148C6-0FA3-4C83-9630-A57A41C2E18F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E44C2D80-4178-4956-BC1A-7E12178BD670}

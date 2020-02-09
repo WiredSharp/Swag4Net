@@ -1,4 +1,4 @@
-﻿namespace Swag4Net.Code.Tests
+﻿namespace Swag4Net.Core.Tests
 
 open Expecto
 open Expecto.Logging
