@@ -135,4 +135,17 @@ module ApiDiffTests =
                 Expect.isEmpty (Warnings result) "no warning should have been raised"
                 Expect.hasLength (Breakings result) 1 "one breaking should be raised"
             }
+            test "api definition with added consumed format is information" {
+                let previousApi = apiOnePath
+                let currentApi = { apiOnePath with Paths = [ {
+                                                                apiOnePath.Paths.[0] with
+                                                                    Consumes = ["application/json";"application/xml"]
+                                                             }
+                                                           ]
+                                }
+                let result = Compare previousApi currentApi
+                Expect.hasLength (Infos result) 1 "one info should be raised"
+                Expect.isEmpty (Warnings result) "no warning should have been raised"
+                Expect.isEmpty (Breakings result) "no breaking should have been raised"
+            }
         ]
