@@ -120,7 +120,7 @@ module ApiDiffTests =
                 let result = Compare previousApi currentApi
                 Expect.isEmpty (Infos result) "no info should have been raised"
                 Expect.isEmpty (Warnings result) "no warning should have been raised"
-                Expect.hasLength (Breakings result) 1 "one breaking should be raised"
+                Expect.hasLength (Breakings result) 1 "one breaking should have been raised"
             }
             test "api definition with distinct operation verb is blocking change" {
                 let previousApi = apiOnePath
@@ -133,7 +133,7 @@ module ApiDiffTests =
                 let result = Compare previousApi currentApi
                 Expect.isEmpty (Infos result) "no info should have been raised"
                 Expect.isEmpty (Warnings result) "no warning should have been raised"
-                Expect.hasLength (Breakings result) 1 "one breaking should be raised"
+                Expect.hasLength (Breakings result) 1 "one breaking should have been raised"
             }
             test "api definition with added consumed format is information" {
                 let previousApi = apiOnePath
@@ -144,8 +144,21 @@ module ApiDiffTests =
                                                            ]
                                 }
                 let result = Compare previousApi currentApi
-                Expect.hasLength (Infos result) 1 "one info should be raised"
+                Expect.hasLength (Infos result) 1 "one info should have been raised"
                 Expect.isEmpty (Warnings result) "no warning should have been raised"
                 Expect.isEmpty (Breakings result) "no breaking should have been raised"
+            }
+            test "api definition with replaced consumed format is breaking" {
+                let previousApi = apiOnePath
+                let currentApi = { apiOnePath with Paths = [ {
+                                                                apiOnePath.Paths.[0] with
+                                                                    Consumes = ["application/xml"]
+                                                             }
+                                                           ]
+                                }
+                let result = Compare previousApi currentApi
+                Expect.hasLength (Breakings result) 1 "one breaking should have been raised"
+                Expect.hasLength (Infos result) 1 "one Info should have been raised"
+                Expect.isEmpty (Warnings result) "no warning should have been raised"
             }
         ]

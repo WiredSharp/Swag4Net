@@ -302,5 +302,5 @@ module Comparer =
            yield! compareInfo ["info"] previous.Infos actual.Infos
            yield! compareString ["basePath"] Info previous.BasePath actual.BasePath
            yield! compareList sortPath comparePath (fun p -> string p) ["paths"] (staticLeveler (Info, Breaking, Breaking)) previous.Paths actual.Paths
-           yield! compareList sortSchema compareSchema (fun d -> string d) ["definitions"] (staticLeveler (Info, Warning, Warning)) previous.Definitions actual.Definitions
+           yield! compareList sortSchema compareSchema (fun d -> string d) ["definitions"] (staticLeveler (Info, Info, Warning)) previous.Definitions actual.Definitions
         }

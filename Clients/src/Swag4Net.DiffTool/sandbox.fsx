@@ -1,3 +1,5 @@
+open System.Net
+
 #load "../Swag4Net.Core/Domain/ApiModel.fs"
 
 #load "Helpers.fs"
@@ -67,32 +69,59 @@ open Swag4Net.Core.Domain.ApiModel
 //
 //Comparer.compareMap iCompare diffString (fun x -> x) ["aPath"] DiffLevel.Info capitals Map.empty |> Seq.iter (fun item -> printfn "%A" item)
 
-let previous = { 
-       BasePath = "/api/v1"
-       Infos = { 
-           Description = "my API description"
-           Version = "1.0.0"
-           Title = "test API"
-           TermsOfService = ""
-           Contact = Some (Email "john@doe.com")
-           License = Some { Name="mylicense"; Url="http://mylicense.com" }
-       } 
-       Paths = []
-       Definitions = []
-     }
+let emptyApi = { 
+   BasePath = ""
+   Infos = { 
+       Description = ""
+       Version = ""
+       Title = ""
+       TermsOfService = ""
+       Contact = None
+       License = None
+   } 
+   Paths = []
+   Definitions = []
+ }
 
-let actual = { 
-       BasePath = "/api/v2"
-       Infos = { 
-           Description = "my API description"
-           Version = "2.0.0"
-           Title = "test API"
-           TermsOfService = ""
-           Contact = Some (Email "john@doe.com")
-           License = Some { Name="mylicense"; Url="http://mylicense.com" }
-       } 
-       Paths = []
-       Definitions = []
-     }
+let simpleInfoApi = { emptyApi with 
+                       Infos = { 
+                           Description = "previous description"
+                           Version = "1.0.0"
+                           Title = "previous API"
+                           TermsOfService = ""
+                           Contact = Some (Email "john@doe.com")
+                           License = Some { Name="mylicense"; Url="http://mylicense.com" }
+                       } 
+                     }
 
-Compare previous actual |> Seq.iter (fun x -> printfn "%A" x)
+let apiOnePath = { simpleInfoApi
+                    with Paths = [
+                                   {
+                                       Path = "/orders"
+                                       Verb = "GET"
+                                       Tags = []
+                                       Summary = "retrieve orders"
+                                       Description = "retrieve a summary for all orders"
+                                       OperationId = "get_orders"
+                                       Consumes = ["application/json"]
+                                       Produces = ["application/json"]
+                                       Parameters = []
+                                       Responses = [{
+                                           Code = StatusCode HttpStatusCode.OK;
+                                           Description = "success"
+                                           Type = None
+                                       }]               
+                                   }
+                               ]}
+
+let previousApi = apiOnePath
+let currentApi = { apiOnePath with Paths = [ {
+                                                apiOnePath.Paths.[0] with
+                                                    Consumes = ["application/xml"]
+                                             }
+                                           ]
+                }
+
+//let result = Compare previousApi currentApi
+
+Compare previousApi currentApi |> Seq.iter (fun x -> printfn "%A" x)
